@@ -58,24 +58,21 @@ class CardTasks extends StatelessWidget {
                   )
                 ],
               ),
-              Stack(
-                alignment: Alignment.bottomLeft,
-                children: [
-                  Positioned(
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        'CHEST',
-                        style: GoogleFonts.hindMadurai(
-                            textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 45,
-                                decoration: TextDecoration.none)),
-                      ),
-                    ),
-                  )
-                ],
-              )
+              Expanded(
+                  child: Align(
+                alignment: FractionalOffset.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    'CHEST',
+                    style: GoogleFonts.hindMadurai(
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 45,
+                            decoration: TextDecoration.none)),
+                  ),
+                ),
+              ))
             ],
           ),
         ),

@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const
-      CardTasks()
-      // HomePage(title: 'Home'),
+      // CardTasks()
+      HomePage(title: 'Home'),
     );
   }
 }
