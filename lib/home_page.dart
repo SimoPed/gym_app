@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/card_tasks.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:gym_app/timer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -17,6 +19,35 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: Colors.black,
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          child: GNav(
+            backgroundColor: Colors.black,
+            color: Colors.white,
+            activeColor: Colors.white,
+            tabBackgroundColor: Colors.white24,
+            gap: 8,
+            // onTabChange: (index) {
+            //   print(index);
+            // },
+            padding: EdgeInsets.all(16),
+            tabs: [
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              GButton(icon: Icons.timer, text: 'Timer'),
+              GButton(
+                icon: Icons.task,
+                text: 'Task',
+              ),
+              GButton(icon: Icons.person, text: 'Profile'),
+            ],
+          ),
+        ),
+      ),
       appBar: AppBar(
         title: Text(widget.title),
         backgroundColor: Colors.black,
@@ -86,7 +117,6 @@ class _HomePageState extends State<HomePage> {
               height: 370,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-
                 children: [
                   CardTasks(),
                   CardTasks(),

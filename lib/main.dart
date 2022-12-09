@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/card_tasks.dart';
+import 'package:gym_app/timer.dart';
 import 'home_page.dart';
 
 void main() {
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
       ),
       home: const
       // CardTasks()
-      HomePage(title: 'Home'),
+      // HomePage(title: 'Home'),
+      Timer()
     );
   }
 }
