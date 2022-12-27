@@ -12,6 +12,15 @@ class CardTasks extends StatelessWidget {
     required this.title
   });
 
+  static const allExercises = [
+    CardTasks(image: 'assets/images/chest.jpeg', title: 'Chest'),
+    CardTasks(image: 'assets/images/back.jpeg', title: 'Back'),
+    CardTasks(image: 'assets/images/leg.jpeg', title: 'Legs'),
+    CardTasks(image: 'assets/images/bicipites.webp', title: 'Biceps'),
+    CardTasks(image: 'assets/images/triceps.webp', title: 'Triceps'),
+    CardTasks(image: 'assets/images/shoulders.webp', title: 'Shoulders'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(

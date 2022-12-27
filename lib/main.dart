@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/card_tasks.dart';
 import 'package:gym_app/timer.dart';
+import 'AllGymParts.dart';
 import 'home_page.dart';
 
 void main() {
@@ -17,10 +18,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const
+      home:
       // CardTasks()
       HomePage(title: 'Home'),
-      // Timer()
+      // AllGymParts(title: 'All Muscle Groups',),
     );
   }
 }

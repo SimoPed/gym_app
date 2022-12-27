@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app/AllGymParts.dart';
 import 'package:gym_app/card_tasks.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:gym_app/timer.dart';
@@ -14,58 +15,60 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  List<String> parts = [
-    'Chest',
-    'Back',
-    'Legs',
-    'Biceps',
-    'Triceps',
-    'Shoulders'
-  ];
+  final controller = TextEditingController();
+  List<CardTasks> exercises = CardTasks.allExercises;
 
-  void _runFilter(String enteredWord) {
-    if(enteredWord.isEmpty) {
+  void searchParts(String query) {
+    final suggestions = CardTasks.allExercises.where((part) {
+      final gymPartTitle = part.title.toLowerCase();
+      final input = query.toLowerCase();
 
-    } else {
+      return gymPartTitle.contains(input);
+    }).toList();
 
-    }
+    setState(() {
+      exercises = suggestions;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    var width = MediaQuery
+        .of(context)
+        .size
+        .width;
 
     return Scaffold(
       backgroundColor: Colors.black,
-      bottomNavigationBar: Container(
-        color: Colors.black,
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: GNav(
-            backgroundColor: Colors.black,
-            color: Colors.white,
-            activeColor: Colors.white,
-            tabBackgroundColor: Colors.white24,
-            gap: 8,
-            // onTabChange: (index) {
-            //   print(index);
-            // },
-            padding: EdgeInsets.all(16),
-            tabs: [
-              GButton(
-                icon: Icons.home,
-                text: 'Home',
-              ),
-              GButton(icon: Icons.timer, text: 'Timer'),
-              GButton(
-                icon: Icons.task,
-                text: 'Task',
-              ),
-              GButton(icon: Icons.person, text: 'Profile'),
-            ],
-          ),
-        ),
-      ),
+      // bottomNavigationBar: Container(
+      //   color: Colors.black,
+      //   child: const Padding(
+      //     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+      //     child: GNav(
+      //       backgroundColor: Colors.black,
+      //       color: Colors.white,
+      //       activeColor: Colors.white,
+      //       tabBackgroundColor: Colors.white24,
+      //       gap: 8,
+      //       // onTabChange: (index) {
+      //       //   print(index);
+      //       // },
+      //       padding: EdgeInsets.all(16),
+      //       tabs: [
+      //         GButton(
+      //           icon: Icons.home,
+      //           text: 'Home',
+      //         ),
+      //         GButton(icon: Icons.timer, text: 'Timer'),
+      //         GButton(
+      //           icon: Icons.task,
+      //           text: 'Task',
+      //         ),
+      //         GButton(icon: Icons.person, text: 'Profile'),
+      //       ],
+      //     ),
+      //   ),
+      // ),
       appBar: AppBar(
         title: Text(widget.title),
         backgroundColor: Colors.black,
@@ -95,15 +98,15 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 30),
               child: TextField(
-                onChanged: (value) => _runFilter(value),
-                readOnly: true,
-                style: TextStyle(
+                onChanged: searchParts,
+                controller: controller,
+                style: const TextStyle(
                   color: Colors.white,
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(
                         borderSide: BorderSide(
                           width: 0,
@@ -114,38 +117,43 @@ class _HomePageState extends State<HomePage> {
                     hintStyle: TextStyle(color: Colors.white),
                     fillColor: Color.fromRGBO(37, 34, 45, 100),
                     filled: true,
-                    prefixIcon: Icon(Icons.search_rounded, color: Colors.white)),
+                    prefixIcon: Icon(
+                        Icons.search_rounded, color: Colors.white)),
               ),
             ),
             Row(
-              children: const [
+              children: [
                 Text(
                   'Collection',
                   style: TextStyle(color: Colors.white),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 300,
                 ),
-                Text(
-                  'See All',
-                  style: TextStyle(color: Colors.white),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const AllGymParts(title: 'All Muscle Groups')),
+                    );
+                  },
+                  child: Text(
+                    'See All',
+                    style: TextStyle(color: Colors.white),
+
+                  ),
                 )
               ],
             ),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20),
               height: 370,
-              child: ListView(
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                children: const [
-                  CardTasks(image: 'assets/images/chest.jpeg', title: 'Chest'),
-                  CardTasks(image: 'assets/images/back.jpeg', title: 'Back'),
-                  CardTasks(image: 'assets/images/leg.jpeg', title: 'Legs'),
-                  CardTasks(image: 'assets/images/bicipites.webp', title: 'Biceps'),
-                  CardTasks(image: 'assets/images/triceps.webp', title: 'Triceps'),
-                  CardTasks(image: 'assets/images/shoulders.webp', title: 'Shoulders'),
-                ],
+                itemCount: exercises.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final exercise = exercises[index];
 
+                  return CardTasks(image: exercise.image, title: exercise.title);
+                },
               ),
             )
           ],
