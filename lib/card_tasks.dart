@@ -1,8 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardTasks extends StatelessWidget {
-  const CardTasks({Key? key}) : super(key: key);
+  final String image;
+  final String title;
+
+  const CardTasks({super.key,
+    required this.image,
+    required this.title
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +21,11 @@ class CardTasks extends StatelessWidget {
           Container(
             height: 350,
             width: 250,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
               image: DecorationImage(
-                image: NetworkImage(
-                    'https://hips.hearstapps.com/hmg-prod/images/701/articles/2017/02/30-min-bench-press1-1518563894.jpeg?crop=0.636xw:1xh;center,top&resize=640:*'),
+                image: AssetImage(image),
                 fit: BoxFit.cover,
               ),
             ),
@@ -66,7 +73,7 @@ class CardTasks extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
-                      'CHEST',
+                      title,
                       style: GoogleFonts.hindMadurai(
                           textStyle: const TextStyle(
                               color: Colors.white,

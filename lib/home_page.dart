@@ -13,6 +13,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  List<String> parts = [
+    'Chest',
+    'Back',
+    'Legs',
+    'Biceps',
+    'Triceps',
+    'Shoulders'
+  ];
+
+  void _runFilter(String enteredWord) {
+    if(enteredWord.isEmpty) {
+
+    } else {
+
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -80,6 +98,8 @@ class _HomePageState extends State<HomePage> {
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 30),
               child: TextField(
+                onChanged: (value) => _runFilter(value),
+                readOnly: true,
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -117,12 +137,13 @@ class _HomePageState extends State<HomePage> {
               height: 370,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: [
-                  CardTasks(),
-                  CardTasks(),
-                  CardTasks(),
-                  CardTasks(),
-                  CardTasks(),
+                children: const [
+                  CardTasks(image: 'assets/images/chest.jpeg', title: 'Chest'),
+                  CardTasks(image: 'assets/images/back.jpeg', title: 'Back'),
+                  CardTasks(image: 'assets/images/leg.jpeg', title: 'Legs'),
+                  CardTasks(image: 'assets/images/bicipites.webp', title: 'Biceps'),
+                  CardTasks(image: 'assets/images/triceps.webp', title: 'Triceps'),
+                  CardTasks(image: 'assets/images/shoulders.webp', title: 'Shoulders'),
                 ],
 
               ),

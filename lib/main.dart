@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
       ),
       home: const
       // CardTasks()
-      // HomePage(title: 'Home'),
-      Timer()
+      HomePage(title: 'Home'),
+      // Timer()
     );
   }
 }
