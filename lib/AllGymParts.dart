@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app/muscle_group_card.dart';
 
 import 'card_tasks.dart';
 
@@ -12,7 +13,6 @@ class AllGymParts extends StatefulWidget {
 }
 
 class _AllGymPartsState extends State<AllGymParts> {
-
   final controller = TextEditingController();
   List<CardTasks> exercises = CardTasks.allExercises;
 
@@ -37,32 +37,94 @@ class _AllGymPartsState extends State<AllGymParts> {
         title: Text(widget.title),
         backgroundColor: Colors.black,
       ),
-      body: Column(
-        children: [
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: 30),
+        child: Column(children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30),
-            child: TextField(
-              onChanged: searchParts,
-              controller: controller,
-              style: const TextStyle(
-                color: Colors.white,
-              ),
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        width: 0,
-                        style: BorderStyle.none,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  hintText: 'Search',
-                  hintStyle: TextStyle(color: Colors.white),
-                  fillColor: Color.fromRGBO(37, 34, 45, 100),
-                  filled: true,
-                  prefixIcon: Icon(
-                      Icons.search_rounded, color: Colors.white)),
+            padding: const EdgeInsets.only(top: 20),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8, right: 10),
+                    child: MuscleGroupCard(titleCard: CardTasks.allExercises[0].title, imageCard: CardTasks.allExercises[0].image)
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8, left: 10),
+                      child: MuscleGroupCard(titleCard: CardTasks.allExercises[1].title, imageCard: CardTasks.allExercises[1].image)
+                  ),
+                ),
+              ],
             ),
           ),
-        ]
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8, right: 10),
+                    child: MuscleGroupCard(titleCard: CardTasks.allExercises[2].title, imageCard: CardTasks.allExercises[2].image)
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8, left: 10),
+                    child: MuscleGroupCard(titleCard: CardTasks.allExercises[3].title, imageCard: CardTasks.allExercises[3].image)
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8, right: 10),
+                    child: MuscleGroupCard(titleCard: CardTasks.allExercises[4].title, imageCard: CardTasks.allExercises[4].image)
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8, left: 10),
+                    child: MuscleGroupCard(titleCard: CardTasks.allExercises[5].title, imageCard: CardTasks.allExercises[5].image)
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                      padding: const EdgeInsets.only(left: 8, right: 10),
+                      child: MuscleGroupCard(titleCard: CardTasks.allExercises[4].title, imageCard: CardTasks.allExercises[4].image)
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                      padding: const EdgeInsets.only(right: 8, left: 10),
+                      child: MuscleGroupCard(titleCard: CardTasks.allExercises[5].title, imageCard: CardTasks.allExercises[5].image)
+                  ),
+                ),
+              ],
+            ),
+          )
+        ]),
       ),
     );
   }

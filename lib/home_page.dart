@@ -14,7 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   final controller = TextEditingController();
   List<CardTasks> exercises = CardTasks.allExercises;
 
@@ -33,10 +32,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -87,14 +83,16 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 30,
                       height: 1.5),
                 ),
-                Column(
-                  children: [
-                    Container(
-                      color: Colors.red,
-                      height: 10,
-                      width: 10,
-                    ),
-                  ],
+                const Expanded(
+                    flex: 3,
+                    child: SizedBox(width: 50)),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/iconHeart.webp'))),
+                  ),
                 )
               ],
             ),
@@ -117,13 +115,13 @@ class _HomePageState extends State<HomePage> {
                     hintStyle: TextStyle(color: Colors.white),
                     fillColor: Color.fromRGBO(37, 34, 45, 100),
                     filled: true,
-                    prefixIcon: Icon(
-                        Icons.search_rounded, color: Colors.white)),
+                    prefixIcon:
+                        Icon(Icons.search_rounded, color: Colors.white)),
               ),
             ),
             Row(
               children: [
-                Text(
+                const Text(
                   'Collection',
                   style: TextStyle(color: Colors.white),
                 ),
@@ -132,13 +130,16 @@ class _HomePageState extends State<HomePage> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const AllGymParts(title: 'All Muscle Groups')),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const AllGymParts(title: 'All Muscle Groups')),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'See All',
                     style: TextStyle(color: Colors.white),
-
                   ),
                 )
               ],
@@ -152,7 +153,8 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (BuildContext context, int index) {
                   final exercise = exercises[index];
 
-                  return CardTasks(image: exercise.image, title: exercise.title);
+                  return CardTasks(
+                      image: exercise.image, title: exercise.title);
                 },
               ),
             )
