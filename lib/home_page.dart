@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/AllGymParts.dart';
+import 'package:gym_app/all_gym_parts.dart';
 import 'package:gym_app/card_tasks.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:gym_app/timer.dart';
