@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_app/all_gym_parts.dart';
 import 'package:gym_app/card_tasks.dart';
@@ -35,130 +36,115 @@ class _HomePageState extends State<HomePage> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.black,
-      // bottomNavigationBar: Container(
-      //   color: Colors.black,
-      //   child: const Padding(
-      //     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-      //     child: GNav(
-      //       backgroundColor: Colors.black,
-      //       color: Colors.white,
-      //       activeColor: Colors.white,
-      //       tabBackgroundColor: Colors.white24,
-      //       gap: 8,
-      //       // onTabChange: (index) {
-      //       //   print(index);
-      //       // },
-      //       padding: EdgeInsets.all(16),
-      //       tabs: [
-      //         GButton(
-      //           icon: Icons.home,
-      //           text: 'Home',
-      //         ),
-      //         GButton(icon: Icons.timer, text: 'Timer'),
-      //         GButton(
-      //           icon: Icons.task,
-      //           text: 'Task',
-      //         ),
-      //         GButton(icon: Icons.person, text: 'Profile'),
-      //       ],
-      //     ),
-      //   ),
-      // ),
       appBar: AppBar(
         title: Text(widget.title),
         backgroundColor: Colors.black,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 8, right: 8),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                const Text(
-                  'Discover \nHow to shape \nThe body',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      height: 1.5),
-                ),
-                const Expanded(
-                    flex: 3,
-                    child: SizedBox(width: 50)),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    height: 100,
-                    width: 100,
-                    decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/iconHeart.webp'))),
-                  ),
-                )
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.black,
+                Colors.orange
               ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
-              child: TextField(
-                onChanged: searchParts,
-                controller: controller,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    hintText: 'Search',
-                    hintStyle: TextStyle(color: Colors.white),
-                    fillColor: Color.fromRGBO(37, 34, 45, 100),
-                    filled: true,
-                    prefixIcon:
-                        Icon(Icons.search_rounded, color: Colors.white)),
+              tileMode: TileMode.mirror
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8, right: 8),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const Text(
+                    'Discover \nHow to shape \nThe body',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                        height: 1.5),
+                  ),
+                  const Expanded(flex: 3, child: SizedBox(width: 50)),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/images/iconHeart.webp'))),
+                    ),
+                  )
+                ],
               ),
-            ),
-            Row(
-              children: [
-                const Text(
-                  'Collection',
-                  style: TextStyle(color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30),
+                child: TextField(
+                  onChanged: searchParts,
+                  controller: controller,
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 0,
+                            style: BorderStyle.none,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      hintText: 'Search',
+                      hintStyle: TextStyle(color: Colors.white),
+                      fillColor: Color.fromRGBO(37, 34, 45, 100),
+                      filled: true,
+                      prefixIcon:
+                          Icon(Icons.search_rounded, color: Colors.white)),
                 ),
-                const SizedBox(
-                  width: 300,
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const AllGymParts(title: 'All Muscle Groups')),
-                    );
-                  },
-                  child: const Text(
-                    'See All',
+              ),
+              Row(
+                children: [
+                  const Text(
+                    'Collection',
                     style: TextStyle(color: Colors.white),
                   ),
-                )
-              ],
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 20),
-              height: 370,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: exercises.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final exercise = exercises[index];
-
-                  return CardTasks(
-                      image: exercise.image, title: exercise.title);
-                },
+                  const SizedBox(
+                    width: 300,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const AllGymParts(title: 'All Muscle Groups')),
+                      );
+                    },
+                    child: const Text(
+                      'See All',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
               ),
-            )
-          ],
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 20),
+                height: 370,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: exercises.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final exercise = exercises[index];
+
+                    return CardTasks(
+                        image: exercise.image, title: exercise.title);
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
