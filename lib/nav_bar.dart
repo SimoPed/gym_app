@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_app/all_gym_parts.dart';
 import 'package:gym_app/home_page.dart';
+import 'package:gym_app/list_food.dart';
 import 'package:gym_app/timer.dart';
 
 class SecondPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class _SecondPageState extends State<SecondPage> {
 
   final screens = [
     const HomePage(title: 'Home'),
-    const AllGymParts(title: 'Prova'),
+    const ListFood(title: 'Food'),
     const Timer(title: 'Timer')
   ];
 
