@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gym_app/read_data/get_name_food.dart';
 
 class ListFood extends StatefulWidget {
   final String title;
@@ -10,6 +12,21 @@ class ListFood extends StatefulWidget {
 }
 
 class _ListFoodState extends State<ListFood> {
+  List<String> docIds = [];
+
+  Future getDocId() async {
+    await FirebaseFirestore.instance
+        .collection('Food')
+        .get()
+        .then((snapshot) =>
+        snapshot.docs.forEach((document) {
+          print(document.reference);
+          docIds.add(document.reference.id);
+        }));
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +53,17 @@ class _ListFoodState extends State<ListFood> {
                     fontSize: 25,
                     fontWeight: FontWeight.bold),
               ),
-              //Lista di piatti con firebase
+              Expanded(child: FutureBuilder(
+                  future: getDocId(),
+                  builder: (context, snapshot) {
+                return ListView.builder(
+                    itemCount: docIds.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: GetNameFood(documentId: docIds[index])
+                      );
+                    });
+              }))
             ],
           ),
         ));
