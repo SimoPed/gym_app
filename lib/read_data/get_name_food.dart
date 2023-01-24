@@ -16,17 +16,32 @@ class GetNameFood extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
-            return Column(children: [
-              Text(
-                '${data['name']}',
-                style: const TextStyle(color: Colors.white),
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+              child: Container(
+                height: 150,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image:
+                        DecorationImage(image: NetworkImage('${data['image']}'), fit: BoxFit.cover)),
+                child:
+                    Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                    child: Container(
+                      decoration: BoxDecoration(color: Colors.grey.withOpacity(0.7), borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        child: Text(
+                          '${data['name']}',
+                          style: const TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
               ),
-              Container(
-                width: 50,
-                height: 50,
-                child: Image.network('${data['image']}'),
-              )
-            ]);
+            );
           }
           return const Text('Loading...');
         });

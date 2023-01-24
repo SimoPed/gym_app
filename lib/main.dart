@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:gym_app/card_tasks.dart';
-import 'package:gym_app/food_card.dart';
 import 'package:gym_app/list_food.dart';
 import 'package:gym_app/nav_bar.dart';
 import 'package:gym_app/timer.dart';
@@ -30,9 +29,8 @@ class MyApp extends StatelessWidget {
       home:
       // CardTasks()
       // HomePage(title: 'Home'),
-      // FoodCard(),
-      ListFood(title: 'Food'),
-      // SecondPage(),
+      // ListFood(title: 'Food'),
+      SecondPage(),
       // AllGymParts(title: 'All Muscle Groups',),
     );
   }

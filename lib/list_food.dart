@@ -46,12 +46,15 @@ class _ListFoodState extends State<ListFood> {
           ),
           child: Column(
             children: [
-              const Text(
-                'For a healthy diet',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Text(
+                  'For a healthy diet',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
               Expanded(child: FutureBuilder(
                   future: getDocId(),
@@ -59,9 +62,7 @@ class _ListFoodState extends State<ListFood> {
                 return ListView.builder(
                     itemCount: docIds.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        title: GetNameFood(documentId: docIds[index])
-                      );
+                      return GetNameFood(documentId: docIds[index]);
                     });
               }))
             ],
