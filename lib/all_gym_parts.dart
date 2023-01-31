@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app/details_exercises.dart';
 import 'package:gym_app/muscle_group_card.dart';
 
 import 'card_tasks.dart';
@@ -48,7 +49,17 @@ class _AllGymPartsState extends State<AllGymParts> {
                   flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8, right: 10),
-                    child: MuscleGroupCard(titleCard: CardTasks.allExercises[0].title, imageCard: CardTasks.allExercises[0].image)
+                    child: InkWell(
+                        child: MuscleGroupCard(titleCard: CardTasks.allExercises[0].title, imageCard: CardTasks.allExercises[0].image),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                              DetailsExercises()),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 Expanded(

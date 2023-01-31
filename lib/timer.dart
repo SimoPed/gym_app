@@ -53,27 +53,30 @@ class _TimerState extends State<Timer> {
                     style: const TextStyle(fontSize: 65, color: Colors.white),
                   );
                 }),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomButton(
-                  color: Colors.green,
-                  label: 'Start',
-                  onPressed: () {
-                    _stopWatchTimer.onExecute.add(StopWatchExecute.start);
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 50),
-                  child: CustomButton(
-                    color: Colors.red,
-                    label: 'Stop',
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomButton(
+                    color: Colors.green,
+                    label: 'Start',
                     onPressed: () {
-                      _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
+                      _stopWatchTimer.onExecute.add(StopWatchExecute.start);
                     },
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 50),
+                    child: CustomButton(
+                      color: Colors.red,
+                      label: 'Stop',
+                      onPressed: () {
+                        _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
             // CustomButton(
             //   color: Colors.blue,
